@@ -22,14 +22,14 @@ export default function InsightsPanel({ transactions }) {
   return (
     <div className="section-card">
       <h3 className="text-lg font-bold text-white mb-4">Smart Insights</h3>
-      <div className="grid grid-cols-2 gap-3">
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
         {insights.map((ins, i) => (
           <div key={i} className="insight-card group" style={{ "--ins-color": ins.color }}>
             <div className="flex items-start gap-2">
-              <span className="text-xl">{ins.icon}</span>
-              <div>
+              <span className="text-xl flex-shrink-0">{ins.icon}</span>
+              <div className="min-w-0 flex-1">
                 <p className="text-xs text-white/40">{ins.label}</p>
-                <p className="text-base font-black" style={{ color: ins.color }}>{ins.value}</p>
+                <p className="text-base font-black break-words" style={{ color: ins.color }}>{ins.value}</p>
                 <p className="text-xs text-white/30">{ins.sub}</p>
               </div>
             </div>

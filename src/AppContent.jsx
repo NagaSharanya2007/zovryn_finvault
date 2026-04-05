@@ -13,7 +13,7 @@ export default function AppContent() {
   const { transactions, dark } = useApp();
   const [modalOpen, setModalOpen] = useState(false);
 
-  const totalBalance = transactions.reduce((a, t) => (t.type === "income" ? a + t.amount : a - t.amount), 0) + 8000;
+  const totalBalance = transactions.reduce((a, t) => (t.type === "income" ? a + t.amount : a - t.amount), 0) + 640000;
   const totalIncome = transactions.filter((t) => t.type === "income").reduce((a, t) => a + t.amount, 0);
   const totalExpenses = transactions.filter((t) => t.type === "expense").reduce((a, t) => a + t.amount, 0);
 

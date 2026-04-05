@@ -40,7 +40,7 @@ export function AuthProvider({ children }) {
     }
     const users = JSON.parse(localStorage.getItem("fin_users") || "[]");
     const foundUser = users.find(
-      u => String(u.email || "").trim().toLowerCase() === normalizedEmail && u.password === normalizedPassword
+      u => String(u.email || "").trim().toLowerCase() === normalizedEmail && String(u.password || "").trim() === normalizedPassword
     );
     if (foundUser) {
       localStorage.setItem("fin_user", JSON.stringify(foundUser));

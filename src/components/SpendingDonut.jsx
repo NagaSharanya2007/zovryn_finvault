@@ -38,31 +38,33 @@ export default function SpendingDonut({ transactions }) {
           <p className="text-xs text-white/40">By category</p>
         </div>
       </div>
-      <div className="flex flex-col sm:flex-row items-center gap-4">
-        <ResponsiveContainer width={180} height={180}>
-          <PieChart>
-            <Pie
-              data={data}
-              cx="50%"
-              cy="50%"
-              innerRadius={52}
-              outerRadius={80}
-              dataKey="value"
-              animationBegin={0}
-              animationDuration={1200}
-              activeIndex={activeIndex}
-              activeShape={renderActiveShape}
-              onMouseEnter={(_, i) => setActiveIndex(i)}
-              onMouseLeave={() => setActiveIndex(null)}
-            >
-              {data.map((entry, i) => (
-                <Cell key={i} fill={CATEGORY_COLORS[entry.name] || "#6b7280"} stroke="transparent" />
-              ))}
-            </Pie>
-            <Tooltip content={<CustomPieTooltip />} />
-          </PieChart>
-        </ResponsiveContainer>
-        <div className="spending-legend flex-1 w-full">
+      <div className="flex flex-col lg:flex-row items-center justify-center lg:justify-start gap-6">
+        <div style={{ minWidth: '160px', width: '100%', maxWidth: '200px' }}>
+          <ResponsiveContainer width="100%" height={200}>
+            <PieChart>
+              <Pie
+                data={data}
+                cx="50%"
+                cy="50%"
+                innerRadius={45}
+                outerRadius={75}
+                dataKey="value"
+                animationBegin={0}
+                animationDuration={1200}
+                activeIndex={activeIndex}
+                activeShape={renderActiveShape}
+                onMouseEnter={(_, i) => setActiveIndex(i)}
+                onMouseLeave={() => setActiveIndex(null)}
+              >
+                {data.map((entry, i) => (
+                  <Cell key={i} fill={CATEGORY_COLORS[entry.name] || "#6b7280"} stroke="transparent" />
+                ))}
+              </Pie>
+              <Tooltip content={<CustomPieTooltip />} />
+            </PieChart>
+          </ResponsiveContainer>
+        </div>
+        <div className="spending-legend w-full lg:flex-1">
           {data.map((d, i) => (
             <div
               key={i}

@@ -38,33 +38,31 @@ export default function TransactionsPanel({ onAddTx }) {
 
   return (
     <div className="section-card">
-      <div className="flex flex-col sm:flex-row sm:items-center gap-4 mb-4">
-        <div className="flex-1">
+      <div className="flex flex-col gap-4 mb-4">
+        <div>
           <h3 className="text-lg font-bold text-white">Transactions</h3>
           <p className="text-xs text-white/40">{filtered.length} records</p>
         </div>
-        <div className="flex items-center justify-end gap-3 w-full sm:w-auto">
-          <div className="search-wrap-container">
-            <div className="search-wrap flex-1 sm:flex-none">
-              <span className="search-icon">🔍</span>
-              <input
-                value={search}
-                onChange={(e) => setSearch(e.target.value)}
-                placeholder="Search transactions…"
-                className="search-input"
-              />
-            </div>
-            {role === "admin" && (
-              <RippleButton onClick={onAddTx} className="add-btn-inline">
-                <span className="font-bold">+</span> Add
-              </RippleButton>
-            )}
+        <div className="search-wrap-container">
+          <div className="search-wrap flex-1">
+            <span className="search-icon">🔍</span>
+            <input
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
+              placeholder="Search transactions…"
+              className="search-input"
+            />
           </div>
+          {role === "admin" && (
+            <RippleButton onClick={onAddTx} className="add-btn-inline">
+              <span className="font-bold">+</span> Add
+            </RippleButton>
+          )}
         </div>
       </div>
 
-      <div className="tx-actions flex flex-wrap items-center gap-2 mb-4">
-        <div className="filter-group flex flex-wrap gap-2">
+      <div className="tx-actions">
+        <div className="filter-group">
           {["all", "income", "expense"].map((f) => (
             <RippleButton
               key={f}
@@ -75,7 +73,7 @@ export default function TransactionsPanel({ onAddTx }) {
             </RippleButton>
           ))}
         </div>
-        <div className="sort-group ml-auto flex flex-wrap gap-2">
+        <div className="sort-group">
           <RippleButton onClick={() => toggleSort("date")} className="sort-btn">
             Date {sort === "date" ? (sortDir === "desc" ? "↓" : "↑") : ""}
           </RippleButton>

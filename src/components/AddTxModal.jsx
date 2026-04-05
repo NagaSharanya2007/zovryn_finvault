@@ -49,11 +49,11 @@ export default function AddTxModal({ open, onClose }) {
     <div className="modal-overlay" onClick={onClose}>
       <div className="modal-box" onClick={(e) => e.stopPropagation()}>
         <RippleButton onClick={onClose} className="modal-close-btn-top">✕</RippleButton>
-        <div className="mb-6">
-          <h3 style={{ color: 'var(--text)' }} className="text-xl font-black">Add Transaction</h3>
+        <div className="modal-header">
+          <h3 className="modal-title">Add Transaction</h3>
         </div>
 
-        <div className="modal-pill-row mb-5">
+        <div className="modal-pill-row">
           {["expense", "income"].map((t) => (
             <RippleButton
               key={t}
@@ -69,7 +69,7 @@ export default function AddTxModal({ open, onClose }) {
           { label: "Amount (₹)", key: "amount", type: "number", placeholder: "0.00" },
           { label: "Date", key: "date", type: "date", placeholder: "" }
         ].map((field) => (
-          <div key={field.key} className="mb-4">
+          <div key={field.key} className="modal-form-group">
             <label className="modal-label">{field.label}</label>
             <input
               type={field.type}
@@ -81,11 +81,11 @@ export default function AddTxModal({ open, onClose }) {
               }}
               className={`modal-input ${errors[field.key] ? "border-rose-500/50" : ""}`}
             />
-            {errors[field.key] && <p className="text-xs text-rose-400 mt-1">{errors[field.key]}</p>}
+            {errors[field.key] && <p className="modal-error-text">{errors[field.key]}</p>}
           </div>
         ))}
 
-        <div className="mb-6">
+        <div className="modal-form-group">
           <label className="modal-label">Category</label>
           <select
             value={form.category}
@@ -101,9 +101,9 @@ export default function AddTxModal({ open, onClose }) {
         <RippleButton
           onClick={handleSubmit}
           disabled={submitting}
-          className={`w-full py-3 rounded-xl font-bold text-white transition-all duration-300 ${submitting ? "bg-white/10" : "bg-gradient-to-r from-cyan-500 to-violet-500 hover:shadow-[0_0_30px_rgba(139,92,246,0.4)]"}`}
+          className="modal-submit-btn"
         >
-          {submitting ? "Adding…" : "Add Transaction ✦"}
+          {submitting ? "Adding…" : "✦ Add Transaction"}
         </RippleButton>
       </div>
     </div>
